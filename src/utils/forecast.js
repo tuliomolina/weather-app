@@ -9,7 +9,12 @@ const forecast = (latitude, longitude, callback) => {
     } else if (body.message) {
       callback("Unable to find location!", undefined);
     } else {
-      const data = `Daily summary: ${body.daily[0].weather[0].description}. It is currently ${body.current.temp} degrees out.`;
+      const data = {
+        summary: `Daily summary: ${body.daily[0].weather[0].description}. It is currently ${body.current.temp} degrees out.`,
+        maximun: `Maximun temperature during the day: ${body.daily[0].temp.max}.`,
+        minimun: `Minimun temperature during the day: ${body.daily[0].temp.min}.`,
+      };
+
       callback(undefined, data);
     }
   });

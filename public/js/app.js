@@ -1,7 +1,7 @@
 const weatherForm = document.querySelector("form");
 const search = document.querySelector("input");
 const messageOne = document.querySelector("#message-1");
-const messageTwo = document.querySelector("#message-2");
+const messagesList = document.querySelector("#messages");
 
 weatherForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -9,7 +9,7 @@ weatherForm.addEventListener("submit", (e) => {
   const location = search.value;
 
   messageOne.textContent = "Loading...";
-  messageTwo.textContent = "";
+  messages.textContent = "";
 
   fetch(`/weather?address=${location}`).then((response) => {
     response.json().then(({ error, location, forecast } = {}) => {
@@ -17,7 +17,11 @@ weatherForm.addEventListener("submit", (e) => {
         messageOne.textContent = error;
       } else {
         messageOne.textContent = location;
-        messageTwo.textContent = forecast;
+        for (const prop in forecast) {
+          const message = document.createElement("li");
+          message.textContent = forecast[prop];
+          messagesList.appendChild(message);
+        }
       }
     });
   });
