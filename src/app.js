@@ -34,13 +34,6 @@ app.get("/about", (req, res) => {
   });
 });
 
-app.get("/help", (req, res) => {
-  res.render("help", {
-    title: "Help",
-    name: "Tulio Molina",
-  });
-});
-
 app.get("/weather", (req, res) => {
   const address = req.query.address;
   if (!address) {
@@ -63,26 +56,6 @@ app.get("/weather", (req, res) => {
         address,
       });
     });
-  });
-});
-
-app.get("/products", (req, res) => {
-  if (!req.query.search) {
-    return res.send({
-      error: "you must provide a search terms",
-    });
-  }
-  console.log(req.query.search);
-  res.send({
-    product: [],
-  });
-});
-
-app.get("/help/*", (req, res) => {
-  res.render("404", {
-    title: "404",
-    message: "Help article not found",
-    name: "Tulio Molina",
   });
 });
 
