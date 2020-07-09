@@ -42,8 +42,8 @@ header a {
   margin-right: 16px;
 }
 
-.portrait {
-  width: 150px;
+a {
+  text-decoration: none;
 }
 
 input {
